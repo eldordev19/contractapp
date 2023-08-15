@@ -3,7 +3,6 @@ package uz.rtmc.contractapp.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,7 @@ import java.util.UUID;
 @Data
 @PackagePrivate
 @Entity(name = "contracts")
-public class Contract {
+public class Month {
 
     @Id
     @GeneratedValue
@@ -24,11 +23,5 @@ public class Contract {
 
     String name;
 
-    String debt;
-
-    @ManyToOne
-    Type type_id;
-
-    @ManyToOne
-    Month month;
+    boolean is_paid;
 }

@@ -5,5 +5,5 @@ import uz.rtmc.contractapp.model.Type;
 
 import java.util.UUID;
 
-public interface TypeRepository extends JpaRepository<UUID, Type> {
+public interface TypeRepository extends JpaRepository<Type, UUID> {
 }
