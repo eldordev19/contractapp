@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @PackagePrivate
-@Entity(name = "contracts")
+@Entity(name = "months")
 public class Month {
 
     @Id
