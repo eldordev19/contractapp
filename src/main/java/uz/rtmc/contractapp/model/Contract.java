@@ -1,14 +1,12 @@
 package uz.rtmc.contractapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.PackagePrivate;
 
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -27,8 +25,8 @@ public class Contract {
     String debt;
 
     @ManyToOne
-    Type type_id;
+    Type type;
 
-    @ManyToOne
-    Month month;
+    @ManyToMany
+    List<Month> months;
 }
