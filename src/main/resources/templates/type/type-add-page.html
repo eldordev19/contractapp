@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Type Add Page</title>
@@ -10,12 +10,12 @@
 <div class="container">
     <br>
     <br>
-<form>
+<form class="form-sample" method="post" th:action="@{/type/add-type}" th:object="${type}">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Kategoriya nomi</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" th:field="*{name}">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Kiritish</button>
 </form>
 </div>
 </body>

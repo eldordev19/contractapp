@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Contracts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <!--  <style>-->
+    <!--    table {-->
+    <!--      counter-reset: rowNumber;-->
+    <!--    }-->
+
+    <!--    table tr {-->
+    <!--      counter-increment: rowNumber;-->
+    <!--    }-->
+
+    <!--    table tr td:first-child::before {-->
+    <!--      content: counter(rowNumber);-->
+    <!--      min-width: 1em;-->
+    <!--      margin-right: 0.5em;-->
+    <!--    }-->
+    <!--  </style>-->
+</head>
+<body>
+<div class="container">
+    <br>
+    <br>
+    <a class="btn btn-sm btn-secondary" th:href="@{'/con/add/' + ${typeId}}">Yangi shartnoma qoshish</a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Nomi</th>
+            <th scope="col">To'lov haqida</th>
+            <th scope="col">Qarzdorlik</th>
+            <th scope="col">O'zgartirish</th>
+            <th scope="col">O'chirish</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contract : ${contracts}">
+            <td th:utext="${contract.getName()}"></td>
+            <td th:text="tolangan"></td>
+            <td th:text="${contract.getDebt()}"></td>
+            <td><a class="btn btn-sm btn-warning"
+                   th:href="@{'/con/edit/' + ${contract.getId()}}">O'zgartirish</a></td>
+            <td><a class="btn btn-sm btn-danger"
+                   th:href="@{'/con/delete/' + ${contract.getId()}}">O'chirish</a></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
