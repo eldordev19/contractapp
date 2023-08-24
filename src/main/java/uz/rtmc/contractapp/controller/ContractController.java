@@ -36,7 +36,7 @@ public class ContractController {
         Contract contract = new Contract();
         Type type = typeService.getTypeById(typeId);
         contract.setType(type);
-
+        model.addAttribute("typeID", typeId);
         model.addAttribute("contract", contract);
         return "contract/contract-add-page";
     }
@@ -44,6 +44,21 @@ public class ContractController {
     @PostMapping("/add-finish")
     public void addFinish(@ModelAttribute("contract") Contract contract, HttpServletResponse response) throws IOException {
         contractService.addContract(contract);
-        response.sendRedirect("/pc/finishTask/" + contract.getType().getId() + "");
+        response.sendRedirect("/con/by-type/" + contract.getType().getId() + "");
+    }
+
+    @GetMapping("/edit/{contractId}")
+    public String getEditPage(@PathVariable String contractId, Model model) {
+        Contract contract = contractService.getContractById(contractId);
+        model.addAttribute("contract", contract);
+        return "contract/contract-edit-page";
+    }
+
+
+
+    @GetMapping("/delete/{contractId}")
+    public void deleteContract(@PathVariable String contractId,HttpServletResponse response) throws IOException {
+        String typeId = contractService.deleteContract(contractId);
+        response.sendRedirect("/con/by-type/" + typeId + "");
     }
 }

@@ -36,4 +36,8 @@ public class TypeService {
     public void deleteType(String typeId) {
         typeRepository.deleteById(UUID.fromString(typeId));
     }
+
+    public Type getTypeByContractId(String contractId) {
+        return typeRepository.findByContractId(UUID.fromString(contractId));
+    }
 }

@@ -13,23 +13,16 @@
 <div class="container">
     <br>
     <br>
-    <form class="form-sample" method="post" th:action="@{/con/add}" th:object="${type}">
+    <form class="form-sample" method="post" th:action="@{/con/add-finish}" th:object="${contract}">
         <div class="mb-3">
             <label for="exampleInput1" class="form-label">Shartnoma nomini kiriting</label>
-            <input type="text" class="form-control" id="exampleInput1" aria-describedby="Help">
+            <input type="text" class="form-control" id="exampleInput1" aria-describedby="Help" th:field="*{name}">
+            <input type="text" class="form-control" th:field="*{type}" th:value="${typeID}" hidden>
         </div>
         <div class="mb-3">
             <label for="exampleInput" class="form-label">Qarzdorlik</label>
-            <input type="text" class="form-control" id="exampleInput">
+            <input type="text" class="form-control" id="exampleInput" th:field="*{debt}">
         </div>
-<!--        <div class="mb-3">-->
-<!--        <select class="form-select" aria-label="Default select example" name="type">-->
-<!--            <div th:each="type : ${types}">-->
-<!--                <option th:value="${type.getId()}">[[${type.getName()}]]-->
-<!--                </option>-->
-<!--            </div>-->
-<!--        </select>-->
-<!--        </div>-->
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
