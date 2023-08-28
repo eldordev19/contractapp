@@ -13,7 +13,7 @@
 <div class="container">
     <br>
     <br>
-    <form class="form-sample" method="post" th:action="@{/con/add-finish}" th:object="${contract}">
+    <form class="form-sample" method="post" th:action="@{/con/add-finish}" th:object="${dto}">
         <div class="mb-3">
             <label for="exampleInput1" class="form-label">Shartnoma nomini kiriting</label>
             <input type="text" class="form-control" id="exampleInput1" aria-describedby="Help" th:field="*{name}">
@@ -22,6 +22,56 @@
         <div class="mb-3">
             <label for="exampleInput" class="form-label">Qarzdorlik</label>
             <input type="text" class="form-control" id="exampleInput" th:field="*{debt}">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="1" aria-label="Checkbox for following text input" th:field="*{january}">
+                <label> Yanvar</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="2" aria-label="Checkbox for following text input" th:field="*{february}">
+                <label> Fevral</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value=3"" aria-label="Checkbox for following text input" th:field="*{march}">
+                <label> Mart</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="4" aria-label="Checkbox for following text input" th:field="*{april}">
+                <label> Aprel</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="5" aria-label="Checkbox for following text input" th:field="*{may}">
+                <label> May</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="6" aria-label="Checkbox for following text input" th:field="*{june}">
+                <label> Iyun</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="7" aria-label="Checkbox for following text input" th:field="*{july}">
+                <label> Iyul</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="8" aria-label="Checkbox for following text input" th:field="*{august}">
+                <label> Avgust</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="9" aria-label="Checkbox for following text input" th:field="*{september}">
+                <label> Sentabr</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="10" aria-label="Checkbox for following text input" th:field="*{october}">
+                <label> Oktabr</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="11" aria-label="Checkbox for following text input" th:field="*{november}">
+                <label> Noyabr</label><br>
+            </div>
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="checkbox" value="12" aria-label="Checkbox for following text input" th:field="*{december}">
+                <label> Dekabr</label><br>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

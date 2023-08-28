@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import uz.rtmc.contractapp.dto.ContractMonthDto;
 import uz.rtmc.contractapp.model.Contract;
 import uz.rtmc.contractapp.model.Type;
 import uz.rtmc.contractapp.service.ContractService;
@@ -33,18 +34,15 @@ public class ContractController {
 
     @GetMapping("/add/{typeId}")
     public String getAddPage(Model model, @PathVariable String typeId) {
-        Contract contract = new Contract();
-        Type type = typeService.getTypeById(typeId);
-        contract.setType(type);
         model.addAttribute("typeID", typeId);
-        model.addAttribute("contract", contract);
+        model.addAttribute("dto", new ContractMonthDto());
         return "contract/contract-add-page";
     }
 
     @PostMapping("/add-finish")
-    public void addFinish(@ModelAttribute("contract") Contract contract, HttpServletResponse response) throws IOException {
-        contractService.addContract(contract);
-        response.sendRedirect("/con/by-type/" + contract.getType().getId() + "");
+    public void addFinish(@ModelAttribute("dto") ContractMonthDto dto, HttpServletResponse response) throws IOException {
+        contractService.addContract(dto);
+        response.sendRedirect("/con/by-type/" + dto.getType() + "");
     }
 
     @GetMapping("/edit/{contractId}")
