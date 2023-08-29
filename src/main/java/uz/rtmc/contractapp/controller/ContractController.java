@@ -34,8 +34,10 @@ public class ContractController {
 
     @GetMapping("/add/{typeId}")
     public String getAddPage(Model model, @PathVariable String typeId) {
+        ContractMonthDto dto = new ContractMonthDto();
+        dto.setType(typeId);
         model.addAttribute("typeID", typeId);
-        model.addAttribute("dto", new ContractMonthDto());
+        model.addAttribute("dto", dto);
         return "contract/contract-add-page";
     }
 
@@ -47,12 +49,10 @@ public class ContractController {
 
     @GetMapping("/edit/{contractId}")
     public String getEditPage(@PathVariable String contractId, Model model) {
-        Contract contract = contractService.getContractById(contractId);
-        model.addAttribute("contract", contract);
+        ContractMonthDto dto = contractService.getContractMonthDto(contractId);
+        model.addAttribute("dto", dto);
         return "contract/contract-edit-page";
     }
-
-
 
     @GetMapping("/delete/{contractId}")
     public void deleteContract(@PathVariable String contractId,HttpServletResponse response) throws IOException {
