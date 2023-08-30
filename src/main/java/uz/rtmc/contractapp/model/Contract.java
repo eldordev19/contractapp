@@ -31,4 +31,11 @@ public class Contract {
 
     @ManyToMany
     List<Month> months;
+
+    public Contract(UUID id, String name, String debt, Type type) {
+        this.id = id;
+        this.name = name;
+        this.debt = debt;
+        this.type = type;
+    }
 }

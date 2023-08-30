@@ -39,18 +39,18 @@ public class ContractService {
         Type type = typeService.getTypeById(String.valueOf(dto.getType()));
         UUID contractId = UUID.randomUUID();
         Contract contract = new Contract(contractId, dto.getName(), dto.getDebt(), type, months);
-        addPayment(dto, String.valueOf(contractId));
-        contractRepository.save(contract);
+        Contract save = contractRepository.save(contract);
+        addPayment(dto, save.getId());
     }
 
-    public void addPayment(ContractMonthDto dto, String contractId) {
+    public void addPayment(ContractMonthDto dto, UUID contractId) {
         List<PaidInfo> infoList = new ArrayList<>();
         List<Month> months = monthRepository.findAll();
         if (dto.getJanuary() != null) {
             if (dto.getJanuary().equals("1")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Yanvar")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Yanvar")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -58,9 +58,9 @@ public class ContractService {
         }
         if (dto.getFebruary() != null) {
             if (dto.getFebruary().equals("2")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Fevral")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Fevral")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -68,9 +68,9 @@ public class ContractService {
         }
         if (dto.getMarch() != null) {
             if (dto.getMarch().equals("3")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Mart")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Mart")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -78,9 +78,9 @@ public class ContractService {
         }
         if (dto.getApril() != null) {
             if (dto.getApril().equals("4")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Aprel")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Aprel")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -88,9 +88,9 @@ public class ContractService {
         }
         if (dto.getMay() != null) {
             if (dto.getMay().equals("5")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("May")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("May")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -98,9 +98,9 @@ public class ContractService {
         }
         if (dto.getJune() != null) {
             if (dto.getJune().equals("6")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Iyun")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Iyun")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -108,9 +108,9 @@ public class ContractService {
         }
         if (dto.getJuly() != null) {
             if (dto.getJuly().equals("7")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Iyul")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Iyul")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -118,9 +118,9 @@ public class ContractService {
         }
         if (dto.getAugust() != null) {
             if (dto.getAugust().equals("8")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Avgust")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Avgust")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -128,9 +128,9 @@ public class ContractService {
         }
         if (dto.getSeptember() != null) {
             if (dto.getSeptember().equals("9")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Sentabr")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Sentabr")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -138,9 +138,9 @@ public class ContractService {
         }
         if (dto.getOctober() != null) {
             if (dto.getOctober().equals("10")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Oktabr")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Oktabr")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -148,9 +148,9 @@ public class ContractService {
         }
         if (dto.getNovember() != null) {
             if (dto.getNovember().equals("11")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Noyabr")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Noyabr")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -158,9 +158,9 @@ public class ContractService {
         }
         if (dto.getDecember() != null) {
             if (dto.getDecember().equals("12")) {
-                String monthId = null;
+                UUID monthId = null;
                 for (Month month : months) {
-                    if (month.getName().equals("Dekabr")) monthId = String.valueOf(month.getId());
+                    if (month.getName().equals("Dekabr")) monthId = month.getId();
                 }
                 PaidInfo paidInfo = new PaidInfo(null, contractId, monthId, true);
                 infoList.add(paidInfo);
@@ -197,10 +197,227 @@ public class ContractService {
         String november = new String();
         String december = new String();
 
+        List<PaidInfo> infos = infoRepository.getPaidInfoByContractId(UUID.fromString(contractId));
+        List<Month> months = monthRepository.findAll();
+
+        for (PaidInfo info : infos) {
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Yanvar") && info.is_paid() == true) {
+                    january = "1";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Fevral") && info.is_paid() == true) {
+                    february = "2";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Mart") && info.is_paid() == true) {
+                    march = "3";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Aprel") && info.is_paid() == true) {
+                    april = "4";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("May") && info.is_paid() == true) {
+                    may = "5";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Iyun") && info.is_paid() == true) {
+                    june = "6";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Iyul") && info.is_paid() == true) {
+                    july = "7";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Avgust") && info.is_paid() == true) {
+                    august = "8";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Sentabr") && info.is_paid() == true) {
+                    september = "9";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Oktabr") && info.is_paid() == true) {
+                    october = "10";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Noyabr") && info.is_paid() == true) {
+                    november = "11";
+                    break;
+                }
+            }
+            for (Month month : months) {
+                if (info.getMonthId().equals(month.getId()) && month.getName().equals("Dekabr") && info.is_paid() == true) {
+                    december = "12";
+                    break;
+                }
+            }
+        }
+
         Contract contract = getContractById(contractId);
         ContractMonthDto dto = new ContractMonthDto(contract.getName(), String.valueOf(contract.getType().getId()),
                 contract.getDebt(), january, february, march, april, may, june, july, august,
                 september, october, november, december);
         return dto;
+    }
+
+    public void editFinish(ContractMonthDto dto) {
+        Contract contractByName = getContractByName(dto.getName());
+        Type type = typeService.getTypeById(String.valueOf(dto.getType()));
+        Contract contract = new Contract(contractByName.getId(), dto.getName(), dto.getDebt(), type);
+        Contract save = contractRepository.save(contract);
+        editPayment(dto);
+    }
+
+    public void editPayment(ContractMonthDto dto) {
+        Contract contractByName = getContractByName(dto.getName());
+        List<PaidInfo> infoList = new ArrayList<>();
+        List<Month> months = monthRepository.findAll();
+        if (dto.getJanuary() != null) {
+            if (dto.getJanuary().equals("1")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Yanvar")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getFebruary() != null) {
+            if (dto.getFebruary().equals("2")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Fevral")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getMarch() != null) {
+            if (dto.getMarch().equals("3")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Mart")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getApril() != null) {
+            if (dto.getApril().equals("4")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Aprel")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getMay() != null) {
+            if (dto.getMay().equals("5")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("May")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getJune() != null) {
+            if (dto.getJune().equals("6")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Iyun")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getJuly() != null) {
+            if (dto.getJuly().equals("7")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Iyul")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getAugust() != null) {
+            if (dto.getAugust().equals("8")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Avgust")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getSeptember() != null) {
+            if (dto.getSeptember().equals("9")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Sentabr")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getOctober() != null) {
+            if (dto.getOctober().equals("10")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Oktabr")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getNovember() != null) {
+            if (dto.getNovember().equals("11")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Noyabr")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        if (dto.getDecember() != null) {
+            if (dto.getDecember().equals("12")) {
+                UUID monthId = null;
+                for (Month month : months) {
+                    if (month.getName().equals("Dekabr")) monthId = month.getId();
+                }
+                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
+                infoList.add(paidInfo);
+            }
+        }
+        infoRepository.saveAll(infoList);
+    }
+
+    private Contract getContractByName(String name) {
+        return contractRepository.getByContractName(name);
     }
 }

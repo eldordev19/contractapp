@@ -23,9 +23,9 @@ public class PaidInfo {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     UUID id;
 
-    String contractId;
+    UUID contractId;
 
-    String monthId;
+    UUID monthId;
 
     boolean is_paid;
 }

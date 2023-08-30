@@ -54,6 +54,12 @@ public class ContractController {
         return "contract/contract-edit-page";
     }
 
+    @PostMapping("/edit-finish")
+    public void editFinish(@ModelAttribute("dto") ContractMonthDto dto, HttpServletResponse response) throws IOException {
+            contractService.editFinish(dto);
+        response.sendRedirect("/con/by-type/" + dto.getType() + "");
+    }
+
     @GetMapping("/delete/{contractId}")
     public void deleteContract(@PathVariable String contractId,HttpServletResponse response) throws IOException {
         String typeId = contractService.deleteContract(contractId);

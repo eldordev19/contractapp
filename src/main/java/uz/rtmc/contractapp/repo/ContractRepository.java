@@ -14,4 +14,7 @@ public interface ContractRepository extends JpaRepository<Contract, UUID> {
 
     @Query(nativeQuery = true, value = "select id from contracts where name = :name")
     UUID getByName(String name);
+
+    @Query(nativeQuery = true, value = "select * from contracts where name = :name")
+    Contract getByContractName(String name);
 }
