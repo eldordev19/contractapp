@@ -30,17 +30,17 @@
         <thead>
         <tr>
             <th scope="col">Nomi</th>
-            <th scope="col">To'lov haqida</th>
-            <th scope="col">Qarzdorlik</th>
+<!--            <th scope="col">To'lov haqida</th>-->
+<!--            <th scope="col">Qarzdorlik</th>-->
             <th scope="col">O'zgartirish</th>
             <th scope="col">O'chirish</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="contract : ${contracts}">
-            <td th:utext="${contract.getName()}"></td>
-            <td th:text="tolangan"></td>
-            <td th:text="${contract.getDebt()}"></td>
+            <td><a th:href="@{'/con/get-one/' + ${contract.getId()}}">[[${contract.getName()}]]</a></td>
+<!--            <td th:text="tolangan"></td>-->
+<!--            <td th:text="${contract.getDebt()}"></td>-->
             <td><a class="btn btn-sm btn-warning"
                    th:href="@{'/con/edit/' + ${contract.getId()}}">O'zgartirish</a></td>
             <td><a class="btn btn-sm btn-danger"
