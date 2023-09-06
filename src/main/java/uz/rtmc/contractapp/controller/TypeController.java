@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import uz.rtmc.contractapp.dto.TypeDto;
 import uz.rtmc.contractapp.model.Type;
 import uz.rtmc.contractapp.service.TypeService;
 
@@ -18,7 +19,7 @@ public class TypeController {
 
     @GetMapping("/all")
     public String getAllTypes(Model model) {
-        List<Type> types = typeService.getAllTypes();
+        List<TypeDto> types = typeService.getAllTypes();
 
         model.addAttribute("types", types);
         return "type/view";

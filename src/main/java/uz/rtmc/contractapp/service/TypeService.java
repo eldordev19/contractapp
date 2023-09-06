@@ -3,9 +3,12 @@ package uz.rtmc.contractapp.service;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.rtmc.contractapp.dto.TypeDto;
 import uz.rtmc.contractapp.model.Type;
+import uz.rtmc.contractapp.projection.TypeProjection;
 import uz.rtmc.contractapp.repo.TypeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,8 +18,14 @@ public class TypeService {
     @Autowired
     TypeRepository typeRepository;
 
-    public List<Type> getAllTypes() {
-        return typeRepository.findAll();
+    public List<TypeDto> getAllTypes() {
+        List<TypeDto> dtoS = new ArrayList<>();
+        List<TypeProjection> count = typeRepository.getAllTypeWithCount();
+        for (TypeProjection projection : count) {
+            TypeDto dto = new TypeDto(projection.getName(), projection.getCount(), projection.getId().toString());
+            dtoS.add(dto);
+        }
+        return dtoS;
     }
 
     public void addType(Type type) {
@@ -41,3 +50,4 @@ public class TypeService {
         return typeRepository.findByContractId(UUID.fromString(contractId));
     }
 }
+
