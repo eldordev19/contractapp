@@ -18,7 +18,7 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
 
                     <h4 class="py-3 breadcrumb-wrapper mb-4">
-                        <span class="text-muted fw-light">Shartnomalar /</span>
+                        <span class="text-muted fw-light">Shartnomalar </span>
                     </h4>
 
 
@@ -127,14 +127,16 @@
                                             aria-label="Close">
                                     </button>
                                     <div class="text-center mb-4">
-                                        <h3>Add New Topic</h3>
+                                        <h3>Add New Type</h3>
                                     </div>
-                                    <form class="row g-3" method="post" th:action="@{/admin/topics/save-topic}">
+                                    <form class="row g-3" method="post" th:action="@{/type/add-type}" th:object="${type}">
                                         <div class="row">
                                             <div class="col-12 ">
                                                 <label class="form-label">Name</label>
-                                                <input type="text" name="name" class="form-control"
-                                                       placeholder="ex. Entertainment" required/>
+                                                <label>
+                                                    <input type="text" name="name" class="form-control" th:field="*{name}"
+                                                           placeholder="ex. Entertainment" required/>
+                                                </label>
                                             </div>
                                         </div>
                                         <div class="col-12 text-center mt-4">
@@ -158,5 +160,6 @@
             </div>
             <!-- Content wrapper -->
 </div>
+<div th:replace="layouts/footer :: footer"></div>
 </body>
 </html>
