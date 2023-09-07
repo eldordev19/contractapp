@@ -9,6 +9,7 @@ import uz.rtmc.contractapp.model.Type;
 import uz.rtmc.contractapp.service.TypeService;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/type")
@@ -35,7 +36,7 @@ public class TypeController {
     @PostMapping("/add-type")
     public String addType(@ModelAttribute("type") Type type) {
         typeService.addType(type);
-        return "redirect:/type/all";
+        return "redirect:/";
     }
 
     @GetMapping("/edit/{typeId}")
@@ -46,15 +47,16 @@ public class TypeController {
     }
 
     @PostMapping("/edit-finish")
-    public String editFinish(@ModelAttribute("type") Type type) {
-        typeService.editType(type);
-        return "redirect:/type/all";
+    public String editFinish(@RequestParam(name = "id", required = false) UUID id,
+                             @RequestParam(name = "name") String name) {
+        typeService.editType(id, name);
+        return "redirect:/";
     }
 
     @GetMapping("/delete/{typeId}")
     public String deleteType(@PathVariable String typeId) {
         typeService.deleteType(typeId);
-        return "redirect:/type/all";
+        return "redirect:/";
     }
 
 }

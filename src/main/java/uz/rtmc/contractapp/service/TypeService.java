@@ -3,6 +3,7 @@ package uz.rtmc.contractapp.service;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 import uz.rtmc.contractapp.dto.TypeDto;
 import uz.rtmc.contractapp.model.Type;
 import uz.rtmc.contractapp.projection.TypeProjection;
@@ -38,7 +39,10 @@ public class TypeService {
 
     }
 
-    public void editType(Type type) {
+    public void editType(UUID id, String name) {
+        Type type = new Type();
+        type.setName(name);
+        type.setId(id);
         typeRepository.save(type);
     }
 

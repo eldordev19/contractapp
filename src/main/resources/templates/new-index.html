@@ -60,7 +60,7 @@
                                             <span class="tf-icons bx bx-edit"></span>
                                         </button>
 
-                                        <a th:href="@{/admin/types/delete-type/__${type.id}__}">
+                                        <a th:href="@{/type/delete/__${type.id}__}">
                                             <button onclick="return confirm('Are you sure to delete this topic?')"
                                                     type="button" class="btn btn-icon me-2 btn-label-warning">
                                                 <span class="tf-icons bx bx-trash"></span>
@@ -78,10 +78,10 @@
                                                             aria-label="Close">
                                                     </button>
                                                     <div class="text-center mb-4">
-                                                        <h3>Edit Topic</h3>
+                                                        <h3>Edit Type</h3>
                                                     </div>
                                                     <form id="userForm" class="row g-3" method="post"
-                                                          th:action="@{/admin/topics/save-topic}">
+                                                          th:action="@{/type/edit-finish}">
 
                                                         <input hidden th:value="${type.id}" name="id">
                                                         <div class="row">
@@ -89,8 +89,7 @@
                                                                 <label class="form-label">Name</label>
                                                                 <input type="text" name="name"
                                                                        class="form-control"
-                                                                       placeholder="ex. Entertainment"
-                                                                       th:value="${type.name}" required/>
+                                                                       placeholder="ex. Entertainment" th:value="${type.name}" required/>
                                                             </div>
                                                         </div>
                                                         <div class="col-12 text-center mt-4">
