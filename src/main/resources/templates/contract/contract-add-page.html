@@ -1,80 +1,127 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Contract Add Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
-</head>
-<body>
-<div class="container">
-    <br>
-    <br>
-    <form class="form-sample" method="post" th:action="@{/con/add-finish}" th:object="${dto}">
-        <div class="mb-3">
-            <label for="exampleInput1" class="form-label">Shartnoma nomini kiriting</label>
-            <input type="text" class="form-control" id="exampleInput1" aria-describedby="Help" th:field="*{name}">
-            <input type="text" class="form-control" th:field="*{type}" th:value="${typeID}" hidden>
+
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed"
+      dir="ltr" data-theme="theme-default" data-assets-path="admin-assets/"
+      data-template="vertical-menu-template" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="client/layouts/header :: header"></head>
+
+<body class="theme-light-active" id="activeTheme">
+<div>
+    <!-- NAVBAR -->
+    <!--    <nav th:replace="client/layouts/navbar :: navbar"></nav>-->
+    <!-- /NAVBAR -->
+
+    <!-- Content wrapper -->
+
+    <div class="item_create__wrapper bg-body-2 section_gap_y_top__3 section_gap_y_bottom__1">
+        <div class="container">
+            <div class="row justify-content-between gy-4">
+                <div class="col-lg-6">
+                    <div class="item_create__details">
+                        <div class="create__header">
+                            <h2>Yangi shartnoma yaratish</h2>
+                        </div>
+                        <form method="post" id="create_item_form" class="pt-5" enctype="multipart/form-data"
+                              th:action="@{/con/add-finish}" th:object="${dto}">
+                            <div class="custom_input__style pt-4">
+                                <label for="exampleInput1" class="form-label">Shartnoma nomini kiriting</label>
+                                <input type="text" class="form-control" id="exampleInput1" aria-describedby="Help"
+                                       th:field="*{name}">
+                                <input type="text" class="form-control" th:field="*{type}" th:value="${typeID}" hidden>
+                            </div>
+                            <div class="custom_input__style pt-20">
+                                <label for="exampleInput" class="form-label">Qarzdorlik</label>
+                                <input type="text" class="form-control" id="exampleInput" th:field="*{debt}">
+                            </div>
+                            <div>
+                                <br>
+                                <hr>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox100" th:value="1" th:field="*{january}">
+                                    <label class="form-check-label" for="inlineCheckbox100">Yanvar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox2" th:value="2" th:field="*{february}">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox2">Fevral</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox3" th:value="3" th:field="*{march}">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox3">Mart</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox5" th:value="4" th:field="*{april}">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox5">Aprel</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox7" th:value="5" th:field="*{may}">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox7">May</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox9" th:value="6" th:field="*{june}">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox9">Iyun</label>
+                                </div>
+                                <br>
+                                <hr>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox11" th:value="7" th:field="*{july}">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox11">Iyul</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox13" th:value="8" th:field="*{august}">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox13">Avgust</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox15" th:value="9" th:field="*{september}">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox15">Sentabr</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox17" th:value="10" th:field="*{october}">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox17">Oktabr</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox20" th:value="11" th:field="*{november}">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox20">Noyabr</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label"
+                                           for="inlineCheckbox22">Dekabr</label>
+                                    <input class="form-check-input" type="checkbox"
+                                           id="inlineCheckbox22" th:value="12" th:field="*{december}">
+                                </div>
+                            </div>
+                            <div class="form_bottom mt-40">
+                                <button type="submit" class="submit-v2">Saqlash</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="exampleInput" class="form-label">Qarzdorlik</label>
-            <input type="text" class="form-control" id="exampleInput" th:field="*{debt}">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="1" aria-label="Checkbox for following text input" th:field="*{january}">
-                <label> Yanvar</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="2" aria-label="Checkbox for following text input" th:field="*{february}">
-                <label> Fevral</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="3" aria-label="Checkbox for following text input" th:field="*{march}">
-                <label> Mart</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="4" aria-label="Checkbox for following text input" th:field="*{april}">
-                <label> Aprel</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="5" aria-label="Checkbox for following text input" th:field="*{may}">
-                <label> May</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="6" aria-label="Checkbox for following text input" th:field="*{june}">
-                <label> Iyun</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="7" aria-label="Checkbox for following text input" th:field="*{july}">
-                <label> Iyul</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="8" aria-label="Checkbox for following text input" th:field="*{august}">
-                <label> Avgust</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="9" aria-label="Checkbox for following text input" th:field="*{september}">
-                <label> Sentabr</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="10" aria-label="Checkbox for following text input" th:field="*{october}">
-                <label> Oktabr</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="11" aria-label="Checkbox for following text input" th:field="*{november}">
-                <label> Noyabr</label><br>
-            </div>
-            <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" value="12" aria-label="Checkbox for following text input" th:field="*{december}">
-                <label> Dekabr</label><br>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
 </div>
+<!--<div th:replace="client/layouts/footer :: footer"></div>-->
 </body>
 </html>

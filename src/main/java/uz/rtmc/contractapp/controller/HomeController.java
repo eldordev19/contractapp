@@ -23,6 +23,6 @@ public class HomeController {
         model.addAttribute("type", new Type());
         model.addAttribute("types", types);
         model.addAttribute("types", typeDtoS);
-        return "new-index";
+        return "index";
     }
 }

@@ -276,10 +276,20 @@ public class ContractService {
         }
 
         Contract contract = getContractById(contractId);
-        ContractMonthDto dto = new ContractMonthDto(contract.getName(), String.valueOf(contract.getType().getId()),
+        ContractMonthDto dto = new ContractMonthDto(contract.getId(), contract.getName(), String.valueOf(contract.getType().getId()),
                 contract.getDebt(), january, february, march, april, may, june, july, august,
                 september, october, november, december);
         return dto;
+    }
+
+    public List<ContractMonthDto> getAllContractSMonthDto(String typeId) {
+        List<Contract> contracts = getContractsByTypeId(typeId);
+        List<ContractMonthDto> dtoS = new ArrayList<>();
+        for (Contract contract : contracts) {
+            ContractMonthDto dto = getContractMonthDto(String.valueOf(contract.getId()));
+            dtoS.add(dto);
+        }
+        return dtoS;
     }
 
     public void editFinish(ContractMonthDto dto) {
@@ -420,4 +430,6 @@ public class ContractService {
     private Contract getContractByName(String name) {
         return contractRepository.getByContractName(name);
     }
+
+
 }

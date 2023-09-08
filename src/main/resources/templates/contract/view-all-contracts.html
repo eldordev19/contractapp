@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed"
+      dir="ltr" data-theme="theme-default" data-assets-path="admin-assets/"
+      data-template="vertical-menu-template" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts/header :: header"></head>
+
+<body>
+<div>
+    <!-- NAVBAR -->
+    <nav th:replace="layouts/navbar :: navbar"></nav>
+    <!-- /NAVBAR -->
+
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
+
+        <div class="container-xxl flex-grow-1 container-p-y">
+
+            <h4 class="py-3 breadcrumb-wrapper mb-4">
+                <span class="text-muted fw-light">Shartnomalar </span>
+            </h4>
+
+
+            <div class="card">
+                <div class="row justify-content-around align-items-center p-4">
+                    <div class="col-md-6">
+                        <h5 style="float: left">Contracts</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <form th:action="@{'/con/add/' + ${typeId}}">
+                        <button class="btn btn-primary justify-content-around"
+                                style="float: right" type="submit">
+                            Add New Contract
+                        </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Debt</th>
+                            <th>To'lov</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                        <tr th:each="contract, loop : ${contracts}">
+
+                            <td><strong th:text="${loop.index+1}"></strong></td>
+                            <td><a th:href="@{'/con/get-one/' + ${contract.getId()}}">[[${contract.getName()}]]</a></td>
+                            <td th:text="${contract.getDebt()}"></td>
+                            <td>
+                                <button type="button" class="btn btn-icon me-2 btn-label-primary"
+                                        data-bs-toggle="modal"
+                                        th:attr="data-bs-target='#viewPaidMonth'+${contract.id}">
+                                    <span class="tf-icons bx bx-street-view"></span>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-icon me-2 btn-label-primary"
+                                        data-bs-toggle="modal"
+                                        th:attr="data-bs-target='#editTopic'+${contract.id}">
+                                    <span class="tf-icons bx bx-edit"></span>
+                                </button>
+                                <a th:href="@{/con/delete/__${contract.id}__}">
+                                    <button onclick="return confirm('Are you sure to delete this contract?')"
+                                            type="button" class="btn btn-icon me-2 btn-label-warning">
+                                        <span class="tf-icons bx bx-trash"></span>
+                                    </button>
+                                </a>
+                            </td>
+
+                            <!-- PAID MONTH MODAL -->
+                            <div class="modal fade" th:id="'viewPaidMonth'+${contract.id}" tabindex="-1"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+                                    <div class="modal-content p-3 p-md-5">
+                                        <div class="modal-body">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                            </button>
+                                            <div class="text-center mb-4">
+                                                <h3>To'lov</h3>
+                                                <div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getJanuary() == '1'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox100" value="option1" checked
+                                                                   disabled>
+                                                            <label class="form-check-label" for="inlineCheckbox100">Yanvar</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getJanuary() == '1'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox1" value="option1" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox1">Yanvar</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getFebruary() == '2'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox2" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox2">Fevral</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getFebruary() == '2'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox200" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox200">Fevral</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getMarch() == '3'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox3" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox3">Mart</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getMarch() == '3'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox4" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox4">Mart</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getApril() == '4'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox5" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox5">Aprel</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getApril() == '4'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox6" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox6">Aprel</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getMay() == '5'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox7" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox7">May</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getMay() == '5'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox8" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox8">May</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getJune() == '6'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox9" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox9">Iyun</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getJune() == '6'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox10" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox10">Iyun</label>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <hr>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getJuly() == '7'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox11" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox11">Iyul</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getJuly() == '7'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox12" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox12">Iyul</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getAugust() == '8'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox13" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox13">Avgust</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getAugust() == '8'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox14" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox14">Avgust</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getSeptember() == '9'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox15" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox15">Sentabr</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getSeptember() == '9'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox16" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox16">Sentabr</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getOctober() == '10'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox17" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox17">Oktabr</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getOctober() == '10'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox18" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox18">Oktabr</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getNovember() == '11'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox20" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox20">Noyabr</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getNovember() == '11'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox21" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox21">Noyabr</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div th:if="${contract.getDecember() == '12'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox22" value="option2" checked
+                                                                   disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox22">Dekabr</label>
+                                                        </div>
+                                                        <div th:unless="${contract.getDecember() == '12'}">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="inlineCheckbox23" value="option2" disabled>
+                                                            <label class="form-check-label"
+                                                                   for="inlineCheckbox23">Dekabr</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END PAID MONTH MODAL -->
+
+                            <!-- EDIT MODAL -->
+                            <div class="modal fade" th:id="'editTopic'+${contract.id}" tabindex="-1"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+                                    <div class="modal-content p-3 p-md-5">
+                                        <div class="modal-body">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                            </button>
+                                            <div class="text-center mb-4">
+                                                <h3>Edit Type</h3>
+                                            </div>
+                                            <form id="userForm" class="row g-3" method="post"
+                                                  th:action="@{/con/edit-finish}">
+
+                                                <input hidden th:value="${contract.id}" name="id">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <label class="form-label">Name</label>
+                                                        <input type="text" name="name"
+                                                               class="form-control"
+                                                               placeholder="ex. Entertainment"
+                                                               th:value="${contract.name}" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 text-center mt-4">
+                                                    <button type="submit"
+                                                            class="btn btn-primary me-sm-3 me-1">
+                                                        Submit
+                                                    </button>
+                                                    <button type="reset" class="btn btn-label-secondary"
+                                                            data-bs-dismiss="modal"
+                                                            aria-label="Close">Cancel
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END EDIT MODAL -->
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content wrapper -->
+</div>
+<div th:replace="layouts/footer :: footer"></div>
+</body>
+</html>

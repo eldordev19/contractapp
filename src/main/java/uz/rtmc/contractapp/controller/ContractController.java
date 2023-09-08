@@ -26,10 +26,12 @@ public class ContractController {
 
     @GetMapping("/by-type/{typeId}")
     public String getContractsByType(Model model, @PathVariable String typeId) {
-        List<Contract> contracts = contractService.getContractsByTypeId(typeId);
-        model.addAttribute("contracts", contracts);
+        List<ContractMonthDto> dtoS = contractService.getAllContractSMonthDto(typeId);
+        ContractMonthDto dto = new ContractMonthDto();
+        model.addAttribute("dto", dto);
+        model.addAttribute("contracts", dtoS);
         model.addAttribute("typeId", typeId);
-        return "contract/view";
+        return "contract/view-all-contracts";
     }
 
     @GetMapping("/get-one/{contractId}")
