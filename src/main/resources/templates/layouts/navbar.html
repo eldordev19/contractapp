@@ -12,14 +12,14 @@
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 
       <!-- Search -->
-      <form method="get" action="/admin-search">
+      <form>
         <div class="navbar-nav align-items-center">
           <div class="nav-item navbar-search-wrapper mb-0">
             <div class="row">
               <div class="col-md-10">
                 <input name="search" type="text"
                        class="form-control d-none d-md-inline-block text-muted"
-                       placeholder="Search here ">
+                       placeholder="Search here " id="myInput" onkeyup="myFunction()">
               </div>
               <div class="col-md-2">
                 <button class="btn btn-primary" type="submit"><i class="bx bx-search"></i></button>
