@@ -27,13 +27,13 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/client/").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/con/**", "/type/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/loginPost")
-                        .defaultSuccessUrl("/")
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);

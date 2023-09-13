@@ -18,11 +18,9 @@ public class HomeController {
 
     @GetMapping("/")
     public String getAllTypes(Model model) {
-        List<TypeDto> typeDtoS = typeService.getAllTypes();
         List<TypeDto> types = typeService.getAllTypes();
         model.addAttribute("type", new Type());
         model.addAttribute("types", types);
-        model.addAttribute("types", typeDtoS);
         return "index";
     }
 }
