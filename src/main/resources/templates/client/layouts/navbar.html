@@ -27,10 +27,10 @@
                 <div class="row justify-content-between">
                     <div class="col-xl-4 col-2 col-lg-3 col-md-2 col-2 align-items-center d-flex order-0">
                         <div class="nav-logo logo-switch d-flex justify-content-between align-items-center">
-                            <a class="logo-dark" href="/"><img src="/images/logo-dark.png" width="40px"
-                                                                           alt="logo"></a>
-                            <a class="logo-light" href="/"><img src="/images/logo-light.png" width="40px"
-                                                                            alt="logo"></a>
+                            <a class="logo-dark" href="/static"><img src="/images/logo-dark.png" width="40px"
+                                                                     alt="logo"></a>
+                            <a class="logo-light" href="/static"><img src="/images/logo-light.png" width="40px"
+                                                                      alt="logo"></a>
                         </div>
                         <div class="nav-search-style-two w-100 d-xl-block d-none">
                             <form action="/client-search">
@@ -51,11 +51,11 @@
                     <div class="col-xl-8 col-10 col-lg-9 d-flex justify-content-end">
                         <nav class="main-nav mr-2">
                             <div class="inner-logo d-xl-none text-center pt-4">
-                                <a href="/" class="for-dark"><img src="/images/logo-dark.png" width="40px" alt=""></a>
-                                <a href="/" class="for-light"><img src="/images/logo-light.png" width="40px" alt=""></a>
+                                <a href="/static" class="for-dark"><img src="/images/logo-dark.png" width="40px" alt=""></a>
+                                <a href="/static" class="for-light"><img src="/images/logo-light.png" width="40px" alt=""></a>
                             </div>
                             <ul>
-                                <li><a href="/" th:text="#{home}"></a></li>
+                                <li><a href="/static" th:text="#{home}"></a></li>
                                 <li><a href="/topics" th:text="#{topic}"></a></li>
                                 <li><a href="/collections" th:text="#{collections}"></a></li>
                                 <li><a href="/items" th:text="#{items}"></a></li>
@@ -64,8 +64,8 @@
                                     <a href="javascript:void(0)" th:text="#{language}"></a>
                                     <i class="fl flaticon-plus">+</i>
                                     <ul id="locales" class="sub-menu">
-                                        <li><a href="/?lang=en" th:text="#{lang.en}"></a></li>
-                                        <li><a href="/?lang=ru" th:text="#{lang.ru}"></a></li>
+                                        <li><a href="/static?lang=en" th:text="#{lang.en}"></a></li>
+                                        <li><a href="/static?lang=ru" th:text="#{lang.ru}"></a></li>
                                     </ul>
                                 </li>
                             </ul>

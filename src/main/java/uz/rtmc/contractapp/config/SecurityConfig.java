@@ -25,12 +25,11 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/vertretungsplan").hasAnyRole("SCHUELER", "LEHRER", "VERWALTUNG")
+                        .requestMatchers("/").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .loginProcessingUrl("/loginPost")
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);
