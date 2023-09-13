@@ -26,7 +26,7 @@ public class User {
 
     String full_name;
 
-    String login;
+    String username;
 
     String password;
 

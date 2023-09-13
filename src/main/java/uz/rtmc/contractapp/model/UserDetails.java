@@ -6,14 +6,14 @@ import java.util.Collection;
 
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
-    String login;
+    String username;
 
     String password;
 
     String role;
 
     public UserDetails(User user) {
-        this.login = user.getLogin();
+        this.username = user.getUsername();
         this.password = user.getPassword();
         this.role = user.getRole();
     }
@@ -30,7 +30,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public String getUsername() {
-        return login;
+        return username;
     }
 
     @Override

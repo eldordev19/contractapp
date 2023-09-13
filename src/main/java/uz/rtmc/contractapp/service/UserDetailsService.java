@@ -14,8 +14,8 @@ public class UserDetailsService implements org.springframework.security.core.use
     UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userRepository.findByLogin(login);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
         return new uz.rtmc.contractapp.model.UserDetails(user);
     }
 }

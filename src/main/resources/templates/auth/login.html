@@ -2,10 +2,6 @@
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed"
       dir="ltr" data-theme="theme-default" data-assets-path="admin-assets/"
       data-template="vertical-menu-template" xmlns:th="http://www.thymeleaf.org">
-<head>
-<!--    <link rel="stylesheet" th:href="@{/css/login.css}"/>-->
-
-</head>
 <style>
     @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
@@ -111,16 +107,16 @@
 </style>
 <body>
 <div class="login-form">
-    <<form class="login">
+    <form class="login" method="post" th:action="@{/loginPost}" th:object="${loginRequest}">
     <h2>Welcome, User!</h2>
-    <p>Please log in</p>
-    <input type="text" placeholder="User Name" />
-    <input type="password" placeholder="Password" />
-    <input type="submit" value="Log In" />
-    <div class="links">
-        <a href="#">Forgot password</a>
-        <a href="#">Register</a>
-    </div>
+        <div th:if="${param.error}" class="alert alert-error">Parol yoki login xato!!!</div>
+        <label>
+            <input type="text" placeholder="login" th:field="*{username}" required />
+        </label>
+        <label>
+            <input type="password" placeholder="parol" th:field="*{password}" required />
+        </label>
+        <input type="submit" value="Kirish" />
 </form>
 </div>
 </body>
