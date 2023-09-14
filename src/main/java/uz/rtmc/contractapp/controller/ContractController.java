@@ -34,13 +34,6 @@ public class ContractController {
         return "contract/view-all-contracts";
     }
 
-    @GetMapping("/get-one/{contractId}")
-    public String getOne(@PathVariable String contractId, Model model) {
-        ContractMonthDto dto = contractService.getContractMonthDto(contractId);
-        model.addAttribute("dto", dto);
-        return "contract/view-one";
-    }
-
     @GetMapping("/add/{typeId}")
     public String getAddPage(Model model, @PathVariable String typeId) {
         ContractMonthDto dto = new ContractMonthDto();

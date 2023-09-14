@@ -29,7 +29,7 @@ public class ClientController {
         List<TypeDto> types = typeService.getAllTypes();
         model.addAttribute("type", new Type());
         model.addAttribute("types", types);
-        return "index";
+        return "index-client";
     }
 
 //    @GetMapping("/by-type/{typeId}")

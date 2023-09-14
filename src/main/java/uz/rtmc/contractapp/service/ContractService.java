@@ -1,14 +1,14 @@
 package uz.rtmc.contractapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import uz.rtmc.contractapp.dto.ContractMonthDto;
-import uz.rtmc.contractapp.model.Contract;
-import uz.rtmc.contractapp.model.Month;
-import uz.rtmc.contractapp.model.PaidInfo;
-import uz.rtmc.contractapp.model.Type;
+import uz.rtmc.contractapp.model.*;
 import uz.rtmc.contractapp.repo.ContractRepository;
 import uz.rtmc.contractapp.repo.PaidInfoRepository;
+import uz.rtmc.contractapp.repo.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,9 @@ public class ContractService {
 
     @Autowired
     PaidInfoRepository infoRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     public List<Contract> getContractsByTypeId(String typeId) {
 
@@ -431,5 +434,11 @@ public class ContractService {
         return contractRepository.getByContractName(name);
     }
 
+    public User getCurrentUser() {
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String name = authentication.getName();
+        return userRepository.findByUsername(name);
+    }
 }
