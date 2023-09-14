@@ -9,7 +9,7 @@
 <body>
 <div>
   <!-- NAVBAR -->
-<!--  <nav th:replace="client/layouts/navbar :: navbar"></nav>-->
+  <nav th:replace="client/layouts/navbar :: navbar"></nav>
   <!-- /NAVBAR -->
 
   <!-- Content wrapper -->
@@ -53,21 +53,6 @@
               <td><strong th:text="${loop.index+1}"></strong></td>
               <td><a th:href="@{'/con/by-type/' + ${type.getId()}}">[[${type.getName()}]]</a></td>
               <td th:text="${type.count}"> </td>
-<!--              <td>-->
-<!--                <button type="button" class="btn btn-icon me-2 btn-label-primary"-->
-<!--                        data-bs-toggle="modal"-->
-<!--                        th:attr="data-bs-target='#editTopic'+${type.id}">-->
-<!--                  <span class="tf-icons bx bx-edit"></span>-->
-<!--                </button>-->
-
-<!--                <a th:href="@{/type/delete/__${type.id}__}">-->
-<!--                  <button onclick="return confirm('Are you sure to delete this topic?')"-->
-<!--                          type="button" class="btn btn-icon me-2 btn-label-warning">-->
-<!--                    <span class="tf-icons bx bx-trash"></span>-->
-<!--                  </button>-->
-<!--                </a>-->
-<!--              </td>-->
-
 
             </tr>
             </tbody>

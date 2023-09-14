@@ -359,7 +359,7 @@ table tfoot tr th {
 }
 
 .section_gap_y_top__1 {
-  padding-top: 100px;
+  padding-top: 10px;
 }
 
 .section_gap_y_top__2 {
@@ -2276,10 +2276,10 @@ header .header-defult.sticky {
 .nav-search-style-two input {
   border: 2px solid var(--bg-18);
   border-radius: 6px;
-  background: transparent;
+  background: white;
   height: 42px;
   padding-left: 51px;
-  color: var(--text-3);
+  color: blue;
   -webkit-box-shadow: var(--shadow-one);
           box-shadow: var(--shadow-one);
   border-radius: 22px;
@@ -2288,25 +2288,25 @@ header .header-defult.sticky {
 .nav-search-style-two input::-webkit-input-placeholder {
   font-weight: 400;
   font-size: 14px;
-  color: var(--text-3);
+  color: blue;
 }
 
 .nav-search-style-two input:-ms-input-placeholder {
   font-weight: 400;
   font-size: 14px;
-  color: var(--text-3);
+  color: blue;
 }
 
 .nav-search-style-two input::-ms-input-placeholder {
   font-weight: 400;
   font-size: 14px;
-  color: var(--text-3);
+  color: blue;
 }
 
 .nav-search-style-two input::placeholder {
   font-weight: 400;
   font-size: 14px;
-  color: var(--text-3);
+  color: blue;
 }
 
 .nav-search-style-two input:focus {
