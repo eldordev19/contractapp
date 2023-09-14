@@ -1,88 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
 
-<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed"
-      dir="ltr" data-theme="theme-default" data-assets-path="admin-assets/"
-      data-template="vertical-menu-template" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="client/layouts/header::header"></head>
 
-<head th:replace="client/layouts/header :: header"></head>
+<body class="theme-light-active" id="activeTheme">
 
-<body>
-<div>
-  <!-- NAVBAR -->
-  <nav th:replace="client/layouts/navbar :: navbar"></nav>
-  <!-- /NAVBAR -->
-
-  <!-- Content wrapper -->
-  <div class="content-wrapper">
-
-    <div class="container-xxl flex-grow-1 container-p-y">
-
-<!--      <h4 class="py-3 breadcrumb-wrapper mb-4">-->
-<!--        <span class="text-muted fw-light">Shartnomalar </span>-->
-<!--      </h4>-->
+<div th:replace="client/layouts/navbar::navbar"></div>
 
 
-      <div class="card">
-        <div class="row justify-content-around align-items-center p-4">
-          <div class="col-md-12">
-            <h5 style="float: left">Shartnoma turlari</h5>
-          </div>
-<!--          <div class="col-md-6">-->
-<!--            <button class="btn btn-primary justify-content-around"-->
-<!--                    style="float: right"-->
-<!--                    data-bs-toggle="modal"-->
-<!--                    data-bs-target="#addNewType">-->
-<!--              Add New Type-->
-<!--            </button>-->
-<!--          </div>-->
+<!-- ===============  breadcrumb style start =============== -->
+<div class="breadcrumb_style__one bg-body-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <h2 class="page__title">Items</h2>
+            </div>
         </div>
-
-        <div class="table-responsive text-nowrap">
-          <table class="table table-hover" id="myTable">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Count</th>
-<!--              <th>Actions</th>-->
-            </tr>
-            </thead>
-            <tbody class="table-border-bottom-0">
-            <tr th:each="type, loop : ${types}">
-
-              <td><strong th:text="${loop.index+1}"></strong></td>
-              <td><a th:href="@{'/client/by-type/' + ${type.getId()}}">[[${type.getName()}]]</a></td>
-              <td th:text="${type.count}"> </td>
-
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
     </div>
-  </div>
-  <div th:replace="client/layouts/footer :: footer"></div>
 </div>
-<script>
-  function myFunction() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[1];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }
-    }
-  }
-</script>
+<!-- ===============  breadcrumb style end =============== -->
+
+<!-- ===============  nft gird style one start =============== -->
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-hover" id="myTable">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Count</th>
+                    <!--              <th>Actions</th>-->
+                </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                <tr th:each="type, loop : ${types}">
+
+                    <td><strong th:text="${loop.index+1}"></strong></td>
+                    <td><a th:href="@{'/client/by-type/' + ${type.getId()}}">[[${type.getName()}]]</a></td>
+                    <td th:text="${type.count}"></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- ===============  nft gird style one end =============== -->
+
+
+<div th:replace="client/layouts/footer::footer"></div>
 </body>
 </html>

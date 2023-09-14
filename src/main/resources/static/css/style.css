@@ -5,14 +5,14 @@ Version : 1.0
 Created : 04/07/2022
 Last update : 04/07/2022
 ================= */
-/* CSS Index 
+/* CSS Index
 -----------------------------------
   1. Global CSS start
   2. Custom utilities start
   3. Typography css start
   4. Reuseable components start
   5. Navbar style start
-  6. hero style start 
+  6. hero style start
   7. nft style start
   8. seller style start
   9. collection style start
@@ -476,7 +476,7 @@ h6 {
 
 .text-nowrap {
   white-space: nowrap;
-}
+}F
 
 .sub-header-1 {
   font-size: 22px;
@@ -2017,7 +2017,7 @@ h6 {
   Reuseable components end
 ==============================*/
 /* =============================
-  5. Navbar area start 
+  5. Navbar area start
 ==============================*/
 .theme-dark-active .logo-switch .logo-dark {
   display: block;
@@ -2579,7 +2579,7 @@ header .header-defult.sticky {
 }
 
 /* =============================
-  Navbar area end 
+  Navbar area end
 ==============================*/
 /* =============================
   6. hero style start
@@ -4907,14 +4907,14 @@ header .header-defult.sticky {
   font-weight: 400;
   font-size: 15px;
   line-height: 22px;
-  color: var(--text-7);
+  color: #030f1a;
   padding-top: 22px;
 }
 
 .footer_style__one .footer__about h5 {
   font-weight: 600;
   font-size: 13px;
-  color: var(--text-2);
+  color: #030f1a;
   padding-bottom: 12px;
   padding-top: 28px;
 }
@@ -4929,11 +4929,11 @@ header .header-defult.sticky {
   -webkit-box-shadow: var(--shadow-3);
           box-shadow: var(--shadow-3);
   border: var(--border-7);
-  background: var(--bg-24);
+  background: #030f1a;
 }
 
 .footer_style__one .footer__about .languege__dropdown.varient-3 .languege__list {
-  background: var(--bg-24);
+  background: #030f1a;
 }
 
 .footer_style__one .footer__about .languege__dropdown.varient-2 {
@@ -4943,11 +4943,11 @@ header .header-defult.sticky {
 }
 
 .footer_style__one .footer__about .languege__dropdown.varient-2 button {
-  background: var(--bg-17);
+  background: #030f1a;
 }
 
 .footer_style__one .footer__about .languege__dropdown.varient-2 .languege__list {
-  background: var(--bg-17);
+  background: #030f1a;
 }
 
 .footer_style__one .footer__about .languege__dropdown:hover .languege__list {
@@ -5708,7 +5708,7 @@ stats grid style end
   breadcrumb style end
 ==============================*/
 /* =============================
-  17. marketplace, collections and auction style start 
+  17. marketplace, collections and auction style start
 ==============================*/
 .nft_grid__header {
   border: 2px solid var(--bg-2);
@@ -6053,7 +6053,7 @@ stats grid style end
 .sidebar_collections__filter .sidebar__body .single__col label .col__right .cate_icon {
   width: 30px;
   height: 30px;
-  background: var(--bg-body-2);
+  background: #030f1a;
   border-radius: 50%;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
