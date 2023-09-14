@@ -32,13 +32,13 @@ public class ClientController {
         return "index-client";
     }
 
-//    @GetMapping("/by-type/{typeId}")
-//    public String getContractsByType(Model model, @PathVariable String typeId) {
-//        List<ContractMonthDto> dtoS = contractService.getAllContractSMonthDto(typeId);
-//        ContractMonthDto dto = new ContractMonthDto();
-//        model.addAttribute("dto", dto);
-//        model.addAttribute("contracts", dtoS);
-//        model.addAttribute("typeId", typeId);
-//        return "contract/view-all-contracts";
-//    }
+    @GetMapping("/by-type/{typeId}")
+    public String getContractsByType(Model model, @PathVariable String typeId) {
+        List<ContractMonthDto> dtoS = contractService.getAllContractSMonthDto(typeId);
+        ContractMonthDto dto = new ContractMonthDto();
+        model.addAttribute("dto", dto);
+        model.addAttribute("contracts", dtoS);
+        model.addAttribute("typeId", typeId);
+        return "contract/view-all-contracts";
+    }
 }
