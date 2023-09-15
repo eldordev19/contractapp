@@ -1,54 +1,57 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
 
-<head th:replace="client/layouts/header::header"></head>
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed"
+      dir="ltr" data-theme="theme-default" data-assets-path="admin-assets/"
+      data-template="vertical-menu-template" xmlns:th="http://www.thymeleaf.org">
 
-<body class="theme-light-active" id="activeTheme">
+<head th:replace="layouts/header :: header"></head>
 
-<div th:replace="client/layouts/navbar::navbar"></div>
+<body>
+<div>
+    <!-- NAVBAR -->
+    <nav th:replace="layouts/navbar :: navbar"></nav>
+    <!-- /NAVBAR -->
 
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="card">
+                <div class="row justify-content-around align-items-center p-4">
+                    <div class="col-md-6">
+                        <h5 style="float: left">Shartnoma turlari</h5>
+                    </div>
+                </div>
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-hover" id="myTable">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nomi</th>
+                            <th>Soni</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                        <tr th:each="type, loop : ${types}">
 
-<!-- ===============  breadcrumb style start =============== -->
-<div class="breadcrumb_style__one bg-body-2">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12 text-center">
-                <h2 class="page__title">Items</h2>
+                            <td><strong th:text="${loop.index+1}"></strong></td>
+                            <td><a th:href="@{'/client/by-type/' + ${type.getId()}}">[[${type.getName()}]]</a></td>
+                            <td th:text="${type.count}"></td>
+                            <td>
+                                <button type="button" class="btn btn-icon me-2 btn-label-primary"><a th:href="@{'/client/by-type/' + ${type.getId()}}">
+                                    <span class="tf-icons bx bx-arrow-to-right"></span></a>
+                                </button>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    <!-- Content wrapper -->
 </div>
-<!-- ===============  breadcrumb style end =============== -->
-
-<!-- ===============  nft gird style one start =============== -->
-<div class="content-wrapper">
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="table-responsive text-nowrap">
-            <table class="table table-hover" id="myTable">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Count</th>
-                    <!--              <th>Actions</th>-->
-                </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                <tr th:each="type, loop : ${types}">
-
-                    <td><strong th:text="${loop.index+1}"></strong></td>
-                    <td><a th:href="@{'/client/by-type/' + ${type.getId()}}">[[${type.getName()}]]</a></td>
-                    <td th:text="${type.count}"></td>
-
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<!-- ===============  nft gird style one end =============== -->
-
-
-<div th:replace="client/layouts/footer::footer"></div>
+<div th:replace="layouts/footer :: footer"></div>
 </body>
 </html>
