@@ -36,9 +36,11 @@ public class ClientController {
     public String getContractsByType(Model model, @PathVariable String typeId) {
         List<ContractMonthDto> dtoS = contractService.getAllContractSMonthDto(typeId);
         ContractMonthDto dto = new ContractMonthDto();
+        Type typeById = typeService.getTypeById(typeId);
+        model.addAttribute("type_name", typeById.getName());
         model.addAttribute("dto", dto);
         model.addAttribute("contracts", dtoS);
         model.addAttribute("typeId", typeId);
-        return "contract/view-all-contracts";
+        return "client/view-all-contracts";
     }
 }
