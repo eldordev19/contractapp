@@ -17,15 +17,19 @@
 
         <div class="container-xxl flex-grow-1 container-p-y">
 
-            <h4 class="py-3 breadcrumb-wrapper mb-4">
-                <span class="text-muted fw-light">Shartnomalar </span>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h4 class="py-3 breadcrumb-wrapper mb-4" style="text-align: center">
+                <span class="text-muted fw-light">[[${type_name}]] </span>
             </h4>
 
 
             <div class="card">
                 <div class="row justify-content-around align-items-center p-4">
                     <div class="col-md-6">
-                        <h5 style="float: left">Contracts</h5>
+                        <h5 style="float: left">Shartnomalar</h5>
                     </div>
                     <div class="col-md-6">
                         <form th:action="@{'/con/add/' + ${typeId}}">
@@ -52,7 +56,7 @@
                         <tr th:each="contract, loop : ${contracts}">
 
                             <td><strong th:text="${loop.index+1}"></strong></td>
-                            <td><a th:href="@{'/con/get-one/' + ${contract.getId()}}">[[${contract.getName()}]]</a></td>
+                            <td>[[${contract.getName()}]]</td>
                             <td th:text="${contract.getDebt()}"></td>
                             <td>
                                 <button type="button" class="btn btn-icon me-2 btn-label-primary"
