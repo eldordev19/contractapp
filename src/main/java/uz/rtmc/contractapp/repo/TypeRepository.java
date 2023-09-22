@@ -15,7 +15,7 @@ public interface TypeRepository extends JpaRepository<Type, UUID> {
             "where c.id = :contractId")
     Type findByContractId(UUID contractId);
 
-    @Query(nativeQuery = true, value = "select t.name as name, t.id as id from type t")
+    @Query(nativeQuery = true, value = "select type.name as name, type.id from type")
     List<TypeProjection> getAllTypeWithCount();
 
     @Query(nativeQuery = true, value = "select count(*) from contracts c " +

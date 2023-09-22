@@ -32,6 +32,9 @@ public class ContractService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PaidInfoRepository paidInfoRepository;
+
     public List<Contract> getContractsByTypeId(String typeId) {
 
         return contractRepository.getByTypeId(UUID.fromString(typeId));
@@ -305,128 +308,442 @@ public class ContractService {
 
     public void editPayment(ContractMonthDto dto) {
         Contract contractByName = getContractByName(dto.getName());
+        List<PaidInfo> paidInfoList = paidInfoRepository.getPaidInfoByContractId(contractByName.getId());
         List<PaidInfo> infoList = new ArrayList<>();
         List<Month> months = monthRepository.findAll();
-        if (dto.getJanuary() != null) {
-            if (dto.getJanuary().equals("1")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Yanvar")) monthId = month.getId();
+
+
+        if (dto.getJanuary() != null && dto.getJanuary().equals("1")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Yanvar")) {
+                    monthId = month.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
-        }
-        if (dto.getFebruary() != null) {
-            if (dto.getFebruary().equals("2")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Fevral")) monthId = month.getId();
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
-        }
-        if (dto.getMarch() != null) {
-            if (dto.getMarch().equals("3")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Mart")) monthId = month.getId();
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Yanvar")) {
+                    monthId = month.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
-        }
-        if (dto.getApril() != null) {
-            if (dto.getApril().equals("4")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Aprel")) monthId = month.getId();
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
         }
-        if (dto.getMay() != null) {
-            if (dto.getMay().equals("5")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("May")) monthId = month.getId();
+
+
+        if (dto.getFebruary() != null && dto.getFebruary().equals("2")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Fevral")) {
+                    monthId = month.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
-        }
-        if (dto.getJune() != null) {
-            if (dto.getJune().equals("6")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Iyun")) monthId = month.getId();
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
-        }
-        if (dto.getJuly() != null) {
-            if (dto.getJuly().equals("7")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Iyul")) monthId = month.getId();
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Fevral")) {
+                    monthId = month.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
-        }
-        if (dto.getAugust() != null) {
-            if (dto.getAugust().equals("8")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Avgust")) monthId = month.getId();
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
         }
-        if (dto.getSeptember() != null) {
-            if (dto.getSeptember().equals("9")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Sentabr")) monthId = month.getId();
+
+// TODO     BAZADA BOR YOQLIGINI TEKSHIRISH KERAK
+        if (dto.getMarch() != null && dto.getMarch().equals("3")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Mart")) {
+                    monthId = month.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
-        }
-        if (dto.getOctober() != null) {
-            if (dto.getOctober().equals("10")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Oktabr")) monthId = month.getId();
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
-        }
-        if (dto.getNovember() != null) {
-            if (dto.getNovember().equals("11")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Noyabr")) monthId = month.getId();
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Mart")) {
+                    monthId = month.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
-        }
-        if (dto.getDecember() != null) {
-            if (dto.getDecember().equals("12")) {
-                UUID monthId = null;
-                for (Month month : months) {
-                    if (month.getName().equals("Dekabr")) monthId = month.getId();
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
                 }
-                PaidInfo paidInfo = new PaidInfo(null, contractByName.getId(), monthId, true);
-                infoList.add(paidInfo);
             }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
         }
+
+
+        if (dto.getApril() != null && dto.getApril().equals("4")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Aprel")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Aprel")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
+        }
+
+
+        if (dto.getMay() != null && dto.getMay().equals("5")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("May")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("May")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
+        }
+
+
+        if (dto.getJune() != null && dto.getJune().equals("6")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Iyun")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Iyun")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
+        }
+
+
+        if (dto.getJuly() != null && dto.getJuly().equals("7")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Iyul")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Iyul")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
+        }
+
+
+        if (dto.getAugust() != null && dto.getAugust().equals("8")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Avgust")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Avgust")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
+        }
+
+
+        if (dto.getSeptember() != null && dto.getSeptember().equals("9")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Sentabr")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Sentabr")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
+        }
+
+
+        if (dto.getOctober() != null && dto.getOctober().equals("10")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Oktabr")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Oktabr")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
+        }
+
+
+        if (dto.getNovember() != null && dto.getNovember().equals("11")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Noyabr")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Noyabr")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
+        }
+
+
+        if (dto.getDecember() != null && dto.getDecember().equals("12")) {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Dekabr")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            PaidInfo paidInfo = new PaidInfo(paidInfoId, contractByName.getId(), monthId, true);
+            infoList.add(paidInfo);
+        } else {
+            UUID monthId = null;
+            for (Month month : months) {
+                if (month.getName().equals("Dekabr")) {
+                    monthId = month.getId();
+                    break;
+                }
+            }
+            UUID paidInfoId = null;
+            for (PaidInfo paidInfo : paidInfoList) {
+                if (paidInfo.getMonthId().equals(monthId)) {
+                    paidInfoId = paidInfo.getId();
+                    break;
+                }
+            }
+            if (paidInfoId != null) paidInfoRepository.deleteById(paidInfoId);
+        }
+
         infoRepository.saveAll(infoList);
     }
 

@@ -1,13 +1,13 @@
 package uz.rtmc.contractapp.model;
 
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.PackagePrivate;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
